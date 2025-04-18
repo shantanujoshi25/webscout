@@ -1,0 +1,255 @@
+/* Main container and global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  .container {
+    width: 380px;
+    padding: 16px;
+    max-height: 600px;
+    overflow-y: auto;
+  }
+  
+  /* Header styles */
+  h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+  }
+  
+  h1::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    background: url('icon16.png') no-repeat center center;
+    background-size: contain;
+  }
+  
+  h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 16px 0 8px 0;
+  }
+  
+  /* Button styles */
+  .actions {
+    margin: 16px 0;
+  }
+  
+  button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+  }
+  
+  button:hover {
+    background-color: #2980b9;
+  }
+  
+  button:active {
+    background-color: #1f618d;
+  }
+  
+  button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+  }
+  
+  button::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    background: url('scan-icon.png') no-repeat center center;
+    background-size: contain;
+  }
+  
+  /* Status area */
+  .status {
+    padding: 8px;
+    background-color: #edf2f7;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #4a5568;
+  }
+  
+  /* Results area */
+  .results {
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .summary {
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+  
+  /* Vulnerability items */
+  .vulnerabilities {
+    margin-top: 12px;
+  }
+  
+  .vulnerability-item {
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .vulnerability-item h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .vulnerability-item p {
+    font-size: 13px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  
+  .vulnerability-item .location {
+    font-size: 12px;
+    color: #718096;
+    background-color: #f7fafc;
+    padding: 4px 8px;
+    border-radius: 3px;
+    margin: 8px 0;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .vulnerability-item .remediation {
+    margin-top: 8px;
+  }
+  
+  .vulnerability-item .remediation h4 {
+    font-size: 13px;
+    color: #4a5568;
+    margin-bottom: 4px;
+  }
+  
+  /* Severity colors */
+  .high {
+    border-left: 4px solid #e53e3e;
+    background-color: #fff5f5;
+  }
+  
+  .high h3::before {
+    content: '⚠️';
+    margin-right: 6px;
+  }
+  
+  .medium {
+    border-left: 4px solid #dd6b20;
+    background-color: #fffaf0;
+  }
+  
+  .medium h3::before {
+    content: '⚠️';
+    margin-right: 6px;
+  }
+  
+  .low {
+    border-left: 4px solid #d69e2e;
+    background-color: #fffff0;
+  }
+  
+  .low h3::before {
+    content: '•';
+    margin-right: 6px;
+    color: #d69e2e;
+    font-size: 18px;
+  }
+  
+  .no-vulnerabilities {
+    color: #38a169;
+    text-align: center;
+    padding: 12px;
+    font-weight: 500;
+  }
+  
+  /* Loading spinner */
+  .loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  
+  .loading p {
+    margin-bottom: 16px;
+    color: #4a5568;
+  }
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Error messages */
+  .error {
+    color: #e53e3e;
+    font-weight: 500;
+  }
+  
+  /* Footer */
+  .footer {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: #a0aec0;
+  }
+  
+  .footer a {
+    color: #3498db;
+    text-decoration: none;
+  }
+  
+  .footer a:hover {
+    text-decoration: underline;
+  }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Security Scanner</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>WebScout</h1>
+    <h4>Website Security Scanner</h4>
+    <div class="actions">
+      <button id="scanButton">Scan Current Page</button>
+    </div>
+    <div class="status" id="statusArea">Ready to scan</div>
+    <div class="results" id="resultsArea" style="display: none;">
+      <h2>Scan Results</h2>
+      <div class="summary" id="summaryArea"></div>
+      <div class="vulnerabilities" id="vulnerabilitiesArea"></div>
+    </div>
+    <div class="loading" id="loadingArea" style="display: none;">
+      <p>Analyzing page for vulnerabilities...</p>
+      <div class="spinner"></div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
