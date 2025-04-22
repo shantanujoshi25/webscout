@@ -1,26 +1,164 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Web Security Scanner</title>
+  <title>WebScout Security Scanner</title>
   <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
-    <h1>WebScout</h1>
-    <h4>Website Security Scanner</h4>
-    <div class="actions">
-      <button id="scanButton">Scan Current Page</button>
+    <header class="app-header">
+      <div class="logo-container">
+        <div class="logo-icon"></div>
+        <div class="title-container">
+          <h1>WebScout</h1>
+          <h4>Advanced Security Scanner</h4>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="settingsButton" class="icon-button" title="Settings">
+          <i class="fas fa-cog"></i>
+        </button>
+        <button id="helpButton" class="icon-button" title="Help">
+          <i class="fas fa-question-circle"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="dashboard">
+      <div class="scan-card">
+        <div class="scan-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <div class="scan-info">
+          <h3>Website Security Scan</h3>
+          <p>Analyze the current page for security vulnerabilities</p>
+          <button id="scanButton" class="primary-button">
+            <i class="fas fa-search"></i>
+            Scan Current Page
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="status" id="statusArea">Ready to scan</div>
-    <div class="results" id="resultsArea" style="display: none;">
-      <h2>Scan Results</h2>
-      <div class="summary" id="summaryArea"></div>
-      <div class="vulnerabilities" id="vulnerabilitiesArea"></div>
+
+    <div class="status-container">
+      <div class="status" id="statusArea">Ready to scan</div>
     </div>
+    
     <div class="loading" id="loadingArea" style="display: none;">
-      <p>Analyzing page for vulnerabilities...</p>
-      <div class="spinner"></div>
+      <div class="loading-content">
+        <div class="spinner-container">
+          <div class="spinner"></div>
+        </div>
+        <p>Analyzing page for vulnerabilities...</p>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+      </div>
     </div>
+
+    <div class="results" id="resultsArea" style="display: none;">
+      <div class="results-header">
+        <h2>Scan Results</h2>
+        <div class="results-actions">
+          <button id="exportButton" class="icon-text-button" title="Export Results">
+            <i class="fas fa-download"></i>
+            Export
+          </button>
+          <button id="rescanButton" class="icon-text-button" title="Scan Again">
+            <i class="fas fa-redo"></i>
+            Rescan
+          </button>
+        </div>
+      </div>
+      
+      <div class="summary-card" id="summaryArea"></div>
+      
+      <div class="vulnerabilities-container">
+        <div class="filters">
+          <button class="filter-button active" data-filter="all">All</button>
+          <button class="filter-button" data-filter="high">High</button>
+          <button class="filter-button" data-filter="medium">Medium</button>
+          <button class="filter-button" data-filter="low">Low</button>
+        </div>
+        
+        <div class="vulnerabilities" id="vulnerabilitiesArea"></div>
+      </div>
+    </div>
+    
+    <div id="helpModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>WebScout Help</h3>
+          <button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h4>About WebScout</h4>
+          <p>WebScout is an advanced security scanner that helps identify vulnerabilities in web applications.</p>
+          
+          <h4>Vulnerability Types</h4>
+          <div class="help-item">
+            <span class="type-badge xss">XSS</span>
+            <p>Cross-Site Scripting vulnerabilities allow attackers to inject malicious scripts.</p>
+          </div>
+          <div class="help-item">
+            <span class="type-badge csrf">CSRF</span>
+            <p>Cross-Site Request Forgery tricks users into performing unwanted actions.</p>
+          </div>
+          <div class="help-item">
+            <span class="type-badge injection">Injection</span>
+            <p>Injection flaws allow attackers to send hostile data to an interpreter.</p>
+          </div>
+          <div class="help-item">
+            <span class="type-badge ssl">SSL/TLS</span>
+            <p>SSL/TLS issues relate to secure communication problems.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="settingsModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Settings</h3>
+          <button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="setting-item">
+            <label for="scanDepth">Scan Depth</label>
+            <select id="scanDepth">
+              <option value="quick">Quick Scan</option>
+              <option value="standard" selected>Standard</option>
+              <option value="thorough">Thorough</option>
+            </select>
+          </div>
+          
+          <div class="setting-item">
+            <label for="aiDetection">AI-Enhanced Detection</label>
+            <div class="toggle">
+              <input type="checkbox" id="aiDetection" checked>
+              <label for="aiDetection" class="toggle-label"></label>
+            </div>
+          </div>
+          
+          <div class="setting-item">
+            <label for="autoScan">Auto-Scan New Pages</label>
+            <div class="toggle">
+              <input type="checkbox" id="autoScan">
+              <label for="autoScan" class="toggle-label"></label>
+            </div>
+          </div>
+          
+          <div class="button-container">
+            <button id="saveSettings" class="primary-button">Save Settings</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <footer class="app-footer">
+      <p>WebScout v1.0 &copy; 2025</p>
+    </footer>
   </div>
   <script src="popup.js"></script>
 </body>
