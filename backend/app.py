@@ -11,9 +11,7 @@ app = Flask(__name__)
 CORS(app)  
 
 # Initialize OpenAI client
-client = OpenAI(
-    api_key="")
-
+client = OpenAI(api_key="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" ) 
 @app.route('/analyze', methods=['POST'])
 def analyze_source():
     data = request.json
